@@ -15,12 +15,15 @@
             border-left-color: #a855f7;
             color: #f472b6;
         }
-        /* Osiguranje da slike nikada ne iskrive karticu */
-        .station-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+        /* Gvozdena disciplina za kartice - nema rastezanja */
+        .radio-card {
+            height: 76px !important;
+            max-height: 76px !important;
+            min-height: 76px !important;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            overflow: hidden !important;
         }
     </style>
 </head>
@@ -221,96 +224,4 @@
             if (activeFilter !== 'all' && activeFilter !== 'custom') {
                 filtered = combinedStations.filter(s => s.countrycode === activeFilter);
             } else if (activeFilter === 'custom') {
-                const customNames = (JSON.parse(localStorage.getItem('customRadioStations')) || []).map(c => c.name.toLowerCase());
-                filtered = combinedStations.filter(s => customNames.includes(s.name.toLowerCase()));
-            }
-            
-            if (query) {
-                filtered = filtered.filter(s => s.name.toLowerCase().includes(query) || (s.tags && s.tags.toLowerCase().includes(query)));
-            }
-            render(filtered);
-        }
-
-        // Nova, bezbedna funkcija koja briše sliku ako baci grešku i stavlja ikonicu
-        function handleImgError(imgElement) {
-            const container = imgElement.parentElement;
-            imgElement.remove(); // Potpuno sklanjamo sliku iz koda
-            const iconHtml = `<div class="flex items-center justify-center w-full h-full text-purple-500"><i class="fa-solid fa-radio text-lg"></i></div>`;
-            container.insertAdjacentHTML('beforeend', iconHtml);
-        }
-
-        function render(stations) {
-            const grid = document.getElementById('stations-grid');
-            grid.innerHTML = '';
-            if(stations.length === 0) { document.getElementById('no-results').classList.remove('hidden'); return; }
-            document.getElementById('no-results').classList.add('hidden');
-
-            stations.forEach(s => {
-                const card = document.createElement('div');
-                // fiksirana visina (h-20) i skrivanje prelivanja (overflow-hidden)
-                card.className = "bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-center gap-4 cursor-pointer hover:bg-slate-800/80 hover:border-purple-500/40 transition-all group h-20 overflow-hidden shrink-0";
-                
-                let imgHtml = `<div class="flex items-center justify-center w-full h-full text-purple-500"><i class="fa-solid fa-radio text-lg"></i></div>`;
-                
-                if (s.favicon && s.favicon.trim() !== "") {
-                    imgHtml = `<img src="${s.favicon}" onerror="handleImgError(this)" class="station-img rounded-lg">`;
-                }
-
-                card.innerHTML = `
-                    <div class="w-12 h-12 bg-slate-950 rounded-xl flex items-center justify-center overflow-hidden shrink-0 relative border border-slate-800">
-                        ${imgHtml}
-                        <div class="absolute inset-0 bg-purple-600/80 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
-                            <i class="fa-solid fa-play text-white text-xs"></i>
-                        </div>
-                    </div>
-                    <div class="min-w-0 flex-1">
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-[9px] font-bold text-pink-400 bg-pink-950/30 px-1 py-0.5 rounded shrink-0">${s.countrycode || 'WW'}</span>
-                            <h3 class="text-xs font-bold truncate text-slate-200 flex-1">${s.name}</h3>
-                        </div>
-                        <p class="text-[11px] text-slate-400 truncate mt-0.5">${s.tags || 'Muzika uživo'}</p>
-                    </div>`;
-                card.onclick = () => play(s);
-                grid.appendChild(card);
-            });
-        }
-
-        function play(s) {
-            const btn = document.getElementById('play-pause-btn');
-            const icon = document.getElementById('play-icon');
-            const buffer = document.getElementById('buffer-indicator');
-            btn.disabled = false; buffer.classList.remove('hidden');
-            icon.className = "fa-solid fa-spinner animate-spin text-base";
-            
-            document.getElementById('player-title').innerText = s.name;
-            const pLogo = document.getElementById('player-logo');
-            const pIcon = document.getElementById('player-placeholder-icon');
-            
-            if(s.favicon && s.favicon.trim() !== "") { 
-                pIcon.classList.add('hidden'); 
-                pLogo.src = s.favicon; 
-                pLogo.classList.remove('hidden'); 
-                pLogo.onerror = () => { pLogo.classList.add('hidden'); pIcon.classList.remove('hidden'); } 
-            } else { 
-                pLogo.classList.add('hidden'); pIcon.classList.remove('hidden'); 
-            }
-
-            audio.src = s.url;
-            audio.play().then(() => { 
-                icon.className = "fa-solid fa-pause text-base"; 
-                buffer.classList.add('hidden'); 
-            }).catch(() => { 
-                buffer.classList.add('hidden'); 
-                icon.className = "fa-solid fa-play text-base ml-0.5"; 
-            });
-        }
-
-        document.getElementById('play-pause-btn').onclick = () => {
-            const icon = document.getElementById('play-icon');
-            if (audio.paused) { audio.play(); icon.className = "fa-solid fa-pause text-base"; }
-            else { audio.pause(); icon.className = "fa-solid fa-play text-base ml-0.5"; }
-        };
-
-        document.getElementById('volume-slider').oninput = (e) => audio.volume = e.target.value;
-        document.getElementById('search-input').oninput = applyFilter;
-        function toggleAdminModal() { document.getElementById('admin-modal').classList.toggle('hidden'); }
+                const customNames = (JSON.parse(localStorage
