@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PegiaHD & FM - World Radio</title>
+    <title>PegiaHD & FM - World Radio 26</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -15,12 +15,6 @@
             background-color: #1e1b4b !important;
             border-left: 4px solid #a855f7 !important;
             color: #f472b6 !important;
-        }
-        
-        .radio-card {
-            height: 76px !important;
-            max-height: 76px !important;
-            min-height: 76px !important;
         }
     </style>
 </head>
@@ -173,14 +167,241 @@
 
     <script>
         const premiumLocalDatabase = [
-            { name: "Radio 105", url: "https://icecast.unitedradio.it/Radio105.mp3", countrycode: "IT", tags: "Hits, Pop", logo: "https://www.105.net/resizer/1200/630/true/1473934335478.jpg" },
-            { name: "Radio 105 Hits", url: "https://icy.unitedradio.it/105Hits.mp3", countrycode: "IT", tags: "Pop, Top 40", logo: "https://www.105.net/resizer/1200/630/true/1473934335478.jpg" },
-            { name: "Radio 105 2k and More", url: "http://icy.unitedradio.it:80/1052kandMore.mp3", countrycode: "IT", tags: "00s, Pop", logo: "https://www.105.net/resizer/1200/630/true/1473934335478.jpg" },
-            { name: "Radio 105 HipHop RnB", url: "https://icy.unitedradio.it/105HipHopRnB.mp3", countrycode: "IT", tags: "HipHop, RnB", logo: "https://www.105.net/resizer/1200/630/true/1473934335478.jpg" },
-            { name: "Radio 105 InDaKlubb", url: "https://icy.unitedradio.it/105InDaKlubb.mp3", countrycode: "IT", tags: "House, Dance", logo: "https://www.105.net/resizer/1200/630/true/1473934335478.jpg" },
-            { name: "Radio 105 Miami", url: "https://icy.unitedradio.it/105Miami.mp3", countrycode: "IT", tags: "Urban, Reggaeton", logo: "https://www.105.net/resizer/1200/630/true/1473934335478.jpg" },
-            { name: "Radio 105 Story", url: "https://icy.unitedradio.it/105Story.mp3", countrycode: "IT", tags: "Classic Hits", logo: "https://www.105.net/resizer/1200/630/true/1473934335478.jpg" },
-            { name: "RTL 102.5", url: "https://streamingv2.shoutcast.com/rtl-1025", countrycode: "IT", tags: "Pop, Hits", logo: "https://images.rtl.it/RTL1025Flussi/Logos/rtl-1025-fb.png" },
-            { name: "Radio Zeta (RTL)", url: "https://streamingv2.shoutcast.com/radio-zeta", countrycode: "IT", tags: "Italian Pop, Youth", logo: "https://images.rtl.it/RTL1025Flussi/Logos/radio-zeta-fb.png" },
-            { name: "RTL Romeo And Juliet", url: "https://streamingv2.shoutcast.com/rtl-1025-romeoandjuliet", countrycode: "IT", tags: "Love Songs", logo: "https://images.rtl.it/RTL1025Flussi/Logos/rtl-1025-fb.png" },
-            { name: "Radio Kiss
+            { name: "Radio 105", url: "https://icecast.unitedradio.it/Radio105.mp3", countrycode: "IT", tags: "Hits, Pop" },
+            { name: "Radio 105 Hits", url: "https://icy.unitedradio.it/105Hits.mp3", countrycode: "IT", tags: "Pop, Top 40" },
+            { name: "Radio 105 2k and More", url: "http://icy.unitedradio.it:80/1052kandMore.mp3", countrycode: "IT", tags: "00s, Pop" },
+            { name: "Radio 105 HipHop RnB", url: "https://icy.unitedradio.it/105HipHopRnB.mp3", countrycode: "IT", tags: "HipHop, RnB" },
+            { name: "Radio 105 InDaKlubb", url: "https://icy.unitedradio.it/105InDaKlubb.mp3", countrycode: "IT", tags: "House, Dance" },
+            { name: "Radio 105 Miami", url: "https://icy.unitedradio.it/105Miami.mp3", countrycode: "IT", tags: "Urban, Reggaeton" },
+            { name: "Radio 105 Story", url: "https://icy.unitedradio.it/105Story.mp3", countrycode: "IT", tags: "Classic Hits" },
+            { name: "RTL 102.5", url: "https://streamingv2.shoutcast.com/rtl-1025", countrycode: "IT", tags: "Pop, Hits" },
+            { name: "Radio Zeta (RTL)", url: "https://streamingv2.shoutcast.com/radio-zeta", countrycode: "IT", tags: "Italian Pop, Youth" },
+            { name: "RTL Romeo And Juliet", url: "https://streamingv2.shoutcast.com/rtl-1025-romeoandjuliet", countrycode: "IT", tags: "Love Songs" },
+            { name: "Radio Kiss Kiss", url: "https://ice07.fluidstream.net/KissKiss.aac?FLID=8", countrycode: "IT", tags: "Pop, Hits" },
+            { name: "Radio Kiss Kiss Hits", url: "https://ice08.fluidstream.net/kk_hits.aac", countrycode: "IT", tags: "Top 40" },
+            { name: "Radio Kiss Kiss History Hits", url: "https://ice08.fluidstream.net/kk_history.aac", countrycode: "IT", tags: "Oldies" },
+            { name: "Radio Kiss Kiss Latina", url: "https://ice08.fluidstream.net/kk_latina.aac", countrycode: "IT", tags: "Latino" },
+            { name: "Radio Kiss Kiss Rock", url: "https://ice08.fluidstream.net/kk_rock.aac", countrycode: "IT", tags: "Rock" },
+            { name: "Radio Subasio", url: "https://icy.unitedradio.it/Subasio.mp3", countrycode: "IT", tags: "Pop, Melodic" },
+            { name: "Latte Miele", url: "https://ice02.fluidstream.net:80/fluid016.aac", countrycode: "IT", tags: "Italian Music, Pop" },
+            { name: "Discoradio", url: "https://stream.discoradio.radio/audio/disco.stream_aac/playlist.m3u8", countrycode: "IT", tags: "Dance, Electronic" },
+            { name: "Dimensione Suono Roma", url: "https://stream.dimensionesuonoroma.radio/audio/dsr.stream_aac/playlist.m3u8", countrycode: "IT", tags: "Pop, Dance" },
+            { name: "Dimensione Suono Soft", url: "https://stream.dimensionesuonosoft.radio/audio/dssc.stream_aac/playlist.m3u8", countrycode: "IT", tags: "Soft, Chill" },
+            { name: "R101", url: "https://icecast.unitedradio.it/r101_mp3", countrycode: "IT", tags: "Pop, 80s, 90s" },
+            { name: "Radio Freccia", url: "https://streamingv2.shoutcast.com/radiofreccia", countrycode: "IT", tags: "Rock, Hard Rock" },
+            { name: "LifeGate Radio", url: "https://stream7.xdevel.com/audio0s975809-426/stream/icecast.audio", countrycode: "IT", tags: "Jazz, Chill, Indie" },
+            { name: "Radio Italia Solo Musica Italiana", url: "https://stream.radioitalia.it/", countrycode: "IT", tags: "Italian Music" },
+            { name: "Radio Deejay", url: "https://deejay.b2c.cedat85.com/livestream.mp3", countrycode: "IT", tags: "Pop, Talk" },
+            { name: "Radio Capital", url: "https://capital.b2c.cedat85.com/livestream.mp3", countrycode: "IT", tags: "Classic Hits, News" },
+            { name: "m2o", url: "https://m2o.b2c.cedat85.com/livestream.mp3", countrycode: "IT", tags: "Dance, Electronic" },
+            { name: "Virgin Radio Italy", url: "https://icecast.unitedradio.it/VirginRadio.mp3", countrycode: "IT", tags: "Rock" },
+            { name: "RDS - Radio Dimensione Suono", url: "https://stream.rds.radio/audio/rds.stream_aac/playlist.m3u8", countrycode: "IT", tags: "Pop, Top 40" },
+            { name: "Radio 24", url: "https://shoutcast.radio24.it/listen.mp3", countrycode: "IT", tags: "News, Talk" },
+            { name: "Radio Radicale", url: "http://streaming.radioradicale.it/live.mp3", countrycode: "IT", tags: "Politics, Talk" },
+            { name: "Radio Bruno", url: "https://stream.radiobruno.it/audio/bruno.stream/playlist.m3u8", countrycode: "IT", tags: "Hits, Regional" },
+            { name: "Radio Norba", url: "https://stream.radionorba.it/audio/norba.stream/playlist.m3u8", countrycode: "IT", tags: "Pop, Hits" },
+            { name: "Radio Company", url: "https://stream.radiocompany.com/company", countrycode: "IT", tags: "Dance, Pop" },
+            { name: "Radio Ibiza", url: "https://ice07.fluidstream.net/Ibiza.aac", countrycode: "IT", tags: "Club, House" },
+            { name: "Radio Globo", url: "https://stream.radioglobo.it/globo", countrycode: "IT", tags: "Dance, Pop" },
+            { name: "Radio Rock", url: "https://stream.radiorock.it/rock", countrycode: "IT", tags: "Alternative Rock" },
+            { name: "Radio Margherita", url: "https://stream.radiomargherita.com/margherita", countrycode: "IT", tags: "Italian Oldies" },
+            { name: "Radio Birikina", url: "https://stream.radiobirikina.com/birikina", countrycode: "IT", tags: "60s, 70s, Oldies" },
+            { name: "Radio Piterpan", url: "https://stream.radiopiterpan.com/piterpan", countrycode: "IT", tags: "Dance, Youth" },
+            { name: "Radio Bella & Monella", url: "https://stream.radiobellamonella.com/bellamonella", countrycode: "IT", tags: "Pop, Melodic" },
+            { name: "Radio Marilù", url: "https://stream.radiomarilu.com/marilu", countrycode: "IT", tags: "Classic Rock" },
+            { name: "Radio Sorrriso", url: "https://stream.radiosorrriso.com/sorrriso", countrycode: "IT", tags: "Folk, Italian" },
+            { name: "Radio Gelosa", url: "https://stream.radiogelosa.com/gelosa", countrycode: "IT", tags: "80s, 90s Pop" },
+            { name: "Radio 80", url: "https://stream.radio80.com/radio80", countrycode: "IT", tags: "80s Hits" },
+            { name: "TRS Viral", url: "https://stream.trsviral.it/viral", countrycode: "IT", tags: "Reggaeton, Trap" },
+            
+            // RAI BLOK
+            { name: "RAI Radio 1", url: "http://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S16355530/Q4zh3NTu28Rx/icecast", countrycode: "IT", tags: "News, Talk" },
+            { name: "RAI Radio 2", url: "https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S35942484/yp5F67151K92/icecast", countrycode: "IT", tags: "Pop, Talk" },
+            { name: "RAI Radio 3", url: "https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S56630579/yEbkcBtIoSwd/icecast", countrycode: "IT", tags: "Culture, Classical" },
+            { name: "RAI Isoradio", url: "http://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S88230050/W3T2uXpEeCuN/icecast", countrycode: "IT", tags: "Traffic, News" },
+            { name: "RAI Gr Parlamento", url: "https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S32576004/GxPKuXIdZBcL/icecast", countrycode: "IT", tags: "Politics" },
+            { name: "RAI Radio Classica", url: "https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S53422322/bTdUFhYMnnra/icecast", countrycode: "IT", tags: "Classical, Opera" },
+            { name: "RAI Radio Tutta Italiana", url: "https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S2444220/HM9xhFhA0riM/icecast", countrycode: "IT", tags: "100% Italian" },
+            { name: "RAI Radio Live", url: "http://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S37263178/NDUDX4zRfi1K/icecast", countrycode: "IT", tags: "Live Events, Pop" },
+            { name: "RAI Radio Techete", url: "https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S12572409/pHatRL4wJml9/icecast", countrycode: "IT", tags: "Archive, Talk" },
+            
+            // EVROPA
+            { name: "Los 40 Spain", url: "https://25653.live.streamtheworld.com/LOS40_SC", countrycode: "ES", tags: "Pop, Latino" },
+            { name: "RFM Portugal", url: "https://streaming-live.renascencamedia.pt/rfm/mp3", countrycode: "PT", tags: "Pop, Dance" },
+            { name: "Dromos FM", url: "https://stream.dromosfm.gr/dromos898", countrycode: "GR", tags: "Greek Pop" },
+            { name: "Super FM Cyprus", url: "https://stream.superfm.com.cy/live", countrycode: "CY", tags: "Pop, Hits" },
+            { name: "Bay Malta", url: "https://stream.bay.com.mt/bay", countrycode: "MT", tags: "Top 40, Pop" },
+            { name: "RMF FM Poland", url: "https://www.rmfonline.pl/rmf_fm.mp3", countrycode: "PL", tags: "Pop, News" },
+            { name: "Kiss FM Romania", url: "https://live.kissfm.ro/kissfm.mp3", countrycode: "RO", tags: "Top 40, Dance" }
+        ];
+
+        let currentAudio = new Audio();
+        let isPlaying = false;
+        let activeStation = null;
+        let selectedCountry = 'ALL';
+
+        const stationsGrid = document.getElementById('stationsGrid');
+        const searchBox = document.getElementById('searchBox');
+        const playBtn = document.getElementById('playBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeIcon = document.getElementById('volumeIcon');
+        const currentStationName = document.getElementById('currentStationName');
+        const currentStationStatus = document.getElementById('currentStationStatus');
+        const playerLogoContainer = document.getElementById('playerLogoContainer');
+        const statsCount = document.getElementById('statsCount');
+        const addStationModal = document.getElementById('addStationModal');
+
+        // Funkcija koja kreira čist dvoslovni tekstualni logo iz naziva stanice
+        function generateCleanLogoText(name) {
+            let clean = name.replace(/RAI\s*/i, '').trim();
+            let words = clean.split(' ').filter(w => w.length > 0);
+            if (words.length >= 2) {
+                return (words[0][0] + words[1][0]).toUpperCase();
+            } else if (words.length === 1) {
+                return words[0].substring(0, 2).toUpperCase();
+            }
+            return "RD";
+        }
+
+        function renderStations(stations) {
+            stationsGrid.innerHTML = '';
+            statsCount.innerText = `${stations.length} Stanica Učitano`;
+
+            stations.forEach(station => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-900/50 border border-slate-800/80 rounded-xl p-3 hover:bg-slate-800/60 hover:border-purple-500/50 transition cursor-pointer flex items-center gap-3 w-full h-[76px]";
+                
+                const logoText = generateCleanLogoText(station.name);
+
+                card.innerHTML = `
+                    <div class="w-12 h-12 rounded-xl bg-purple-950/40 border border-purple-500/20 text-purple-400 font-black text-sm flex items-center justify-center shrink-0 tracking-wider">
+                        ${logoText}
+                    </div>
+                    <div class="min-w-0 flex-1 text-left">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="text-sm font-semibold text-slate-200 truncate">${station.name}</span>
+                            <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-950 border border-slate-800 text-slate-400 uppercase shrink-0">${station.countrycode}</span>
+                        </div>
+                        <p class="text-xs text-slate-500 truncate mt-0.5">${station.tags}</p>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => playStation(station));
+                stationsGrid.appendChild(card);
+            });
+        }
+
+        function filterByCountry(code) {
+            selectedCountry = code;
+            document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+            const activeBtn = document.getElementById(`btn-${code}`);
+            if(activeBtn) activeBtn.classList.add('active');
+            
+            if (code === 'ALL') {
+                renderStations(premiumLocalDatabase);
+            } else {
+                const filtered = premiumLocalDatabase.filter(s => s.countrycode === code);
+                renderStations(filtered);
+            }
+        }
+
+        function playStation(station) {
+            if (activeStation && activeStation.url === station.url) {
+                togglePlay();
+                return;
+            }
+
+            currentStationStatus.innerText = 'Učitavanje...';
+            currentAudio.src = station.url;
+            
+            currentAudio.play()
+                .then(() => {
+                    isPlaying = true;
+                    activeStation = station;
+                    playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                    currentStationName.innerText = station.name;
+                    currentStationStatus.innerText = 'Emituje se uživo...';
+                    
+                    const logoText = generateCleanLogoText(station.name);
+                    playerLogoContainer.innerHTML = `<div class="w-full h-full bg-purple-950/40 text-purple-400 font-bold flex items-center justify-center text-sm">${logoText}</div>`;
+                })
+                .catch(err => {
+                    console.error(err);
+                    currentStationStatus.innerText = 'Strim nedostupan';
+                    playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                });
+        }
+
+        function togglePlay() {
+            if (!activeStation) return;
+            if (isPlaying) {
+                currentAudio.pause();
+                playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                currentStationStatus.innerText = 'Pauzirano';
+            } else {
+                currentAudio.play()
+                    .then(() => {
+                        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                        currentStationStatus.innerText = 'Emituje se uživo...';
+                    })
+                    .catch(() => {
+                        currentStationStatus.innerText = 'Strim nedostupan';
+                    });
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function openModal() { addStationModal.classList.remove('hidden'); }
+        function closeModal() { addStationModal.classList.add('hidden'); }
+        
+        function saveNewStation() {
+            const name = document.getElementById('newStationName').value;
+            const url = document.getElementById('newStationUrl').value;
+            const country = document.getElementById('newStationCountry').value.toUpperCase() || 'IT';
+            const tags = document.getElementById('newStationTags').value || 'Radio';
+
+            if(!name || !url) {
+                alert('Molimo popunite naziv i URL stanice!');
+                return;
+            }
+
+            const newStation = { name, url, countrycode: country, tags };
+            premiumLocalDatabase.unshift(newStation);
+            
+            filterByCountry(selectedCountry);
+            closeModal();
+            
+            document.getElementById('newStationName').value = '';
+            document.getElementById('newStationUrl').value = '';
+            document.getElementById('newStationCountry').value = '';
+            document.getElementById('newStationTags').value = '';
+        }
+
+        playBtn.addEventListener('click', togglePlay);
+
+        volumeSlider.addEventListener('input', (e) => {
+            const vol = e.target.value;
+            currentAudio.volume = vol / 100;
+            if (vol == 0) {
+                volumeIcon.className = "fa-solid fa-volume-xmark text-slate-600";
+            } else if (vol < 50) {
+                volumeIcon.className = "fa-solid fa-volume-low text-slate-500";
+            } else {
+                volumeIcon.className = "fa-solid fa-volume-high text-purple-500";
+            }
+        });
+
+        searchBox.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = premiumLocalDatabase.filter(station => 
+                (selectedCountry === 'ALL' || station.countrycode === selectedCountry) &&
+                (station.name.toLowerCase().includes(query) || station.tags.toLowerCase().includes(query))
+            );
+            renderStations(filtered);
+        });
+
+        renderStations(premiumLocalDatabase);
+        currentAudio.volume = volumeSlider.value / 100;
+    </script>
+</body>
+</html>
