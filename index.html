@@ -172,7 +172,6 @@
     </div>
 
     <script>
-        // Baza stanica sa ugrađenim logotipima
         const premiumLocalDatabase = [
             { name: "Radio 105", url: "https://icecast.unitedradio.it/Radio105.mp3", countrycode: "IT", tags: "Hits, Pop", logo: "https://www.105.net/resizer/1200/630/true/1473934335478.jpg" },
             { name: "Radio 105 Hits", url: "https://icy.unitedradio.it/105Hits.mp3", countrycode: "IT", tags: "Pop, Top 40", logo: "https://www.105.net/resizer/1200/630/true/1473934335478.jpg" },
@@ -198,7 +197,18 @@
             { name: "Radio Freccia", url: "https://streamingv2.shoutcast.com/radiofreccia", countrycode: "IT", tags: "Rock, Hard Rock", logo: "https://images.rtl.it/RTL1025Flussi/Logos/radiofreccia-fb.png" },
             { name: "LifeGate Radio", url: "https://stream7.xdevel.com/audio0s975809-426/stream/icecast.audio", countrycode: "IT", tags: "Jazz, Chill, Indie", logo: "https://www.lifegate.it/app/uploads/2020/04/lifegate-logo.png" },
             
-            // EVROPA
+            // --- RAI BLOK ---
+            { name: "RAI Radio 1", url: "http://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S16355530/Q4zh3NTu28Rx/icecast", countrycode: "IT", tags: "News, Talk", logo: "" },
+            { name: "RAI Radio 2", url: "https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S35942484/yp5F67151K92/icecast", countrycode: "IT", tags: "Pop, Talk", logo: "" },
+            { name: "RAI Radio 3", url: "https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S56630579/yEbkcBtIoSwd/icecast", countrycode: "IT", tags: "Culture, Classical", logo: "" },
+            { name: "RAI Isoradio", url: "http://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S88230050/W3T2uXpEeCuN/icecast", countrycode: "IT", tags: "Traffic, News", logo: "" },
+            { name: "RAI Gr Parlamento", url: "https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S32576004/GxPKuXIdZBcL/icecast", countrycode: "IT", tags: "Politics", logo: "" },
+            { name: "RAI Radio Classica", url: "https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S53422322/bTdUFhYMnnra/icecast", countrycode: "IT", tags: "Classical, Opera", logo: "" },
+            { name: "RAI Radio Tutta Italiana", url: "https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S2444220/HM9xhFhA0riM/icecast", countrycode: "IT", tags: "100% Italian", logo: "" },
+            { name: "RAI Radio Live", url: "http://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S37263178/NDUDX4zRfi1K/icecast", countrycode: "IT", tags: "Live Events, Pop", logo: "" },
+            { name: "RAI Radio Techete", url: "https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S12572409/pHatRL4wJml9/icecast", countrycode: "IT", tags: "Archive, Talk", logo: "" },
+            
+            // OSTALE EVROPSKE DRŽAVE
             { name: "Los 40 Spain", url: "https://25653.live.streamtheworld.com/LOS40_SC", countrycode: "ES", tags: "Pop, Latino", logo: "" },
             { name: "RFM Portugal", url: "https://streaming-live.renascencamedia.pt/rfm/mp3", countrycode: "PT", tags: "Pop, Dance", logo: "" },
             { name: "Dromos FM", url: "https://stream.dromosfm.gr/dromos898", countrycode: "GR", tags: "Greek Pop", logo: "" },
@@ -228,7 +238,6 @@
             return name.replace(/[^a-zA-Z0-9 ]/g, '').split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
         }
 
-        // GLAVNI RENDER KOJI AUTOMATSKI POPRAVLJA SLIKE AKO NE RADE
         function renderStations(stations) {
             stationsGrid.innerHTML = '';
             statsCount.innerText = `${stations.length} Stanica Učitano`;
@@ -241,7 +250,6 @@
                 let logoHTML = '';
                 
                 if (station.logo && station.logo !== "") {
-                    // Ako eksterni link za sliku baci grešku (403/404), onerror je odmah menja čistim okruglim inicijalom
                     logoHTML = `<img src="${station.logo}" alt="${station.name}" class="w-full h-full object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                 <div style="display:none;" class="w-full h-full bg-purple-950/40 text-purple-400 font-bold text-sm flex items-center justify-center rounded-lg">${initials}</div>`;
                 } else {
@@ -380,7 +388,6 @@
             renderStations(filtered);
         });
 
-        // Inicijalno pokretanje bez petlji koje mogu da puknu
         renderStations(premiumLocalDatabase);
         currentAudio.volume = volumeSlider.value / 100;
     </script>
