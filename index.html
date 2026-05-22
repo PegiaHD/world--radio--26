@@ -1,342 +1,319 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World Radio 26</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-        .sidebar-btn.active {
-            background-color: #1e1b4b;
-            border-left-color: #a855f7;
-            color: #f472b6;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Radio 26</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        .sidebar-btn.active {
+            background-color: #1e1b4b;
+            border-left-color: #a855f7;
+            color: #f472b6;
+        }
+    </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col md:flex-row font-sans antialiased overflow-x-hidden">
 
-    <aside class="w-full md:w-64 bg-slate-900 border-b md:border-b-0 md:border-r border-slate-800 flex flex-col shrink-0 z-40 max-h-screen md:sticky md:top-0">
-        <div class="p-5 border-b border-slate-800">
-            <h1 class="text-2xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent flex items-center gap-2.5">
-                <i class="fa-solid fa-earth-americas text-purple-500"></i> World Radio 26
-            </h1>
-            <p class="text-xs text-slate-400 mt-1">Premium Global Agregator</p>
-        </div>
+    <aside class="w-full md:w-64 bg-slate-900 border-b md:border-b-0 md:border-r border-slate-800 flex flex-col shrink-0 z-40 max-h-screen md:sticky md:top-0">
+        <div class="p-5 border-b border-slate-800">
+            <h1 class="text-2xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent flex items-center gap-2.5">
+                <i class="fa-solid fa-earth-americas text-purple-500"></i> World Radio 26
+            </h1>
+            <p class="text-xs text-slate-400 mt-1">Premium Global Agregator</p>
+        </div>
 
-        <div class="flex-1 overflow-y-auto p-4 space-y-6 max-h-[300px] md:max-h-none">
-            <div>
-                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block px-3 mb-2">Glavno</span>
-                <div class="space-y-1">
-                    <button onclick="filterBy('all')" class="sidebar-btn active w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🌐 Sve stanice</button>
-                    <button onclick="filterBy('custom')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 text-emerald-400 transition-all text-left">⭐ Moje stanice</button>
-                </div>
-            </div>
+        <div class="flex-1 overflow-y-auto p-4 space-y-6 max-h-[300px] md:max-h-none">
+            <div>
+                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block px-3 mb-2">Glavno</span>
+                <div class="space-y-1">
+                    <button onclick="filterBy('all')" class="sidebar-btn active w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🌐 Sve stanice</button>
+                    <button onclick="filterBy('custom')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 text-emerald-400 transition-all text-left">⭐ Moje stanice</button>
+                </div>
+            </div>
 
-            <div>
-                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block px-3 mb-2">Preko Okeana</span>
-                <div class="space-y-1">
-                    <button onclick="filterBy('US')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇺🇸 SAD (USA)</button>
-                    <button onclick="filterBy('GB')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇬🇧 Ujedinjeno Kraljevstvo</button>
-                </div>
-            </div>
+            <div>
+                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block px-3 mb-2">Preko Okeana</span>
+                <div class="space-y-1">
+                    <button onclick="filterBy('US')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇺🇸 SAD (USA)</button>
+                    <button onclick="filterBy('GB')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇬🇧 Ujedinjeno Kraljevstvo</button>
+                </div>
+            </div>
 
-            <div>
-                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block px-3 mb-2">Ex-Yu Region</span>
-                <div class="space-y-1">
-                    <button onclick="filterBy('RS')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇷🇸 Srbija</button>
-                    <button onclick="filterBy('HR')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇭🇷 Hrvatska</button>
-                    <button onclick="filterBy('BA')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇧🇦 BiH</button>
-                    <button onclick="filterBy('SI')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇸🇮 Slovenija</button>
-                    <button onclick="filterBy('ME')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇲🇪 Crna Gora</button>
-                </div>
-            </div>
+            <div>
+                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block px-3 mb-2">Ex-Yu Region</span>
+                <div class="space-y-1">
+                    <button onclick="filterBy('RS')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇷🇸 Srbija</button>
+                    <button onclick="filterBy('HR')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇭🇷 Hrvatska</button>
+                    <button onclick="filterBy('BA')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇧🇦 BiH</button>
+                    <button onclick="filterBy('SI')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇸🇮 Slovenija</button>
+                    <button onclick="filterBy('ME')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇲🇪 Crna Gora</button>
+                </div>
+            </div>
 
-            <div>
-                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block px-3 mb-2">Evropska Unija (EU)</span>
-                <div class="space-y-1">
-                    <button onclick="filterBy('GR')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇬🇷 Grčka</button>
-                    <button onclick="filterBy('DE')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇩🇪 Nemačka</button>
-                    <button onclick="filterBy('IT')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇮🇹 Italija</button>
-                    <button onclick="filterBy('FR')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇫🇷 Francuska</button>
-                    <button onclick="filterBy('BE')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇧🇪 Belgija</button>
-                    <button onclick="filterBy('AT')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇦🇹 Austrija</button>
-                    <button onclick="filterBy('ES')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇪🇸 Španija</button>
-                    <button onclick="filterBy('NL')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇳🇱 Holandija</button>
-                </div>
-            </div>
-        </div>
-    </aside>
+            <div>
+                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block px-3 mb-2">Evropska Unija (EU)</span>
+                <div class="space-y-1">
+                    <button onclick="filterBy('GR')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇬🇷 Grčka</button>
+                    <button onclick="filterBy('DE')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇩🇪 Nemačka</button>
+                    <button onclick="filterBy('IT')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇮🇹 Italija</button>
+                    <button onclick="filterBy('FR')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇫🇷 Francuska</button>
+                    <button onclick="filterBy('BE')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇧🇪 Belgija</button>
+                    <button onclick="filterBy('AT')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇦🇹 Austrija</button>
+                    <button onclick="filterBy('ES')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇪🇸 Španija</button>
+                    <button onclick="filterBy('NL')" class="sidebar-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-l-4 border-transparent text-sm font-medium hover:bg-slate-800 transition-all text-left">🇳🇱 Holandija</button>
+                </div>
+            </div>
+        </div>
+    </aside>
 
-    <div class="flex-1 flex flex-col min-w-0 pb-32">
-        <div class="bg-slate-900/40 p-4 md:p-6 border-b border-slate-850 flex flex-col sm:flex-row items-center justify-between gap-4 sticky top-0 md:relative bg-slate-950/80 backdrop-blur-md z-30">
-            <div class="relative w-full sm:max-w-md">
-                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <input type="text" id="search-input" class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-11 pr-4 py-2.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-all" placeholder="Pretraži stanice na ekranu...">
-            </div>
+    <div class="flex-1 flex flex-col min-w-0 pb-32">
+        <div class="p-4 md:p-6 border-b border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 sticky top-0 md:relative bg-slate-950/80 backdrop-blur-md z-30">
+            <div class="relative w-full sm:max-w-md">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <input type="text" id="search-input" class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-11 pr-4 py-2.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-all" placeholder="Pretraži stanice na ekranu...">
+            </div>
 
-            <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
-                <div id="stats" class="text-xs text-slate-400 bg-slate-900 px-3 py-2 rounded-xl border border-slate-800 font-medium">Učitavanje...</div>
-                <button onclick="toggleAdminModal()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-2 shadow-lg transition-all">
-                    <i class="fa-solid fa-plus"></i> Dodaj stanicu
-                </button>
-            </div>
-        </div>
+            <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
+                <div id="stats" class="text-xs text-slate-400 bg-slate-900 px-3 py-2 rounded-xl border border-slate-800 font-medium">Učitavanje...</div>
+                <button onclick="toggleAdminModal()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-2 shadow-lg transition-all">
+                    <i class="fa-solid fa-plus"></i> Dodaj stanicu
+                </button>
+            </div>
+        </div>
 
-        <main class="p-4 md:p-6 flex-1">
-            <div id="stations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
-            <div id="no-results" class="hidden text-center py-20">
-                <i class="fa-solid fa-radio text-5xl text-slate-800 mb-4 block"></i>
-                <h3 class="text-lg font-medium text-slate-500">Nema stanica za izabranu zemlju</h3>
-            </div>
-        </main>
-    </div>
+        <main class="p-4 md:p-6 flex-1">
+            <div id="stations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4auto-rows-max"></div>
+            <div id="no-results" class="hidden text-center py-20">
+                <i class="fa-solid fa-radio text-5xl text-slate-800 mb-4 block"></i>
+                <h3 class="text-lg font-medium text-slate-500">Nema stanica za izabranu zemlju</h3>
+            </div>
+        </main>
+    </div>
 
-    <footer class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 p-4 z-50">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3.5 w-full sm:w-1/3">
-                <div id="player-logo-container" class="w-12 h-12 bg-slate-950 rounded-xl flex items-center justify-center border border-slate-800 overflow-hidden shrink-0">
-                    <i id="player-placeholder-icon" class="fa-solid fa-compact-disc text-xl text-purple-500 animate-spin"></i>
-                    <img id="player-logo" src="" class="hidden w-full h-full object-cover">
-                </div>
-                <div class="min-w-0 flex-1">
-                    <h4 id="player-title" class="text-sm font-bold truncate text-slate-200">Izaberite radio stanicu</h4>
-                    <p id="player-metadata" class="text-xs text-pink-400 mt-0.5 truncate font-medium"><i class="fa-solid fa-music text-[10px] mr-1 text-slate-500"></i> Muzika uživo</p>
-                </div>
-            </div>
-            
-            <div class="flex items-center gap-4">
-                <button id="play-pause-btn" disabled class="w-12 h-12 rounded-full bg-purple-600 hover:bg-purple-500 text-white flex items-center justify-center shadow-lg disabled:opacity-40 disabled:cursor-not-allowed transition-all">
-                    <i id="play-icon" class="fa-solid fa-play text-base ml-0.5"></i>
-                </button>
-                <div id="buffer-indicator" class="hidden text-xs text-purple-400 animate-pulse font-medium"><i class="fa-solid fa-spinner animate-spin mr-1"></i> Povezivanje...</div>
-            </div>
+    <footer class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 p-4 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5 w-full sm:w-1/3">
+                <div id="player-logo-container" class="w-12 h-12 bg-slate-950 rounded-xl flex items-center justify-center border border-slate-800 overflow-hidden shrink-0">
+                    <i id="player-placeholder-icon" class="fa-solid fa-radio text-xl text-purple-500"></i>
+                    <img id="player-logo" src="" class="hidden w-full h-full object-cover">
+                </div>
+                <div class="min-w-0 flex-1">
+                    <h4 id="player-title" class="text-sm font-bold truncate text-slate-200">Izaberite radio stanicu</h4>
+                    <p id="player-metadata" class="text-xs text-pink-400 mt-0.5 truncate font-medium"><i class="fa-solid fa-music text-[10px] mr-1 text-slate-500"></i> Muzika uživo</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button id="play-pause-btn" disabled class="w-12 h-12 rounded-full bg-purple-600 hover:bg-purple-500 text-white flex items-center justify-center shadow-lg disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+                    <i id="play-icon" class="fa-solid fa-play text-base ml-0.5"></i>
+                </button>
+                <div id="buffer-indicator" class="hidden text-xs text-purple-400 animate-pulse font-medium"><i class="fa-solid fa-spinner animate-spin mr-1"></i> Povezivanje...</div>
+            </div>
 
-            <div class="hidden sm:flex items-center justify-end gap-3 w-1/3 text-slate-400">
-                <i class="fa-solid fa-volume-high text-xs"></i>
-                <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.8" class="w-20 accent-purple-500 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer">
-            </div>
-        </div>
-    </footer>
+            <div class="hidden sm:flex items-center justify-end gap-3 w-1/3 text-slate-400">
+                <i class="fa-solid fa-volume-high text-xs"></i>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.8" class="w-20 accent-purple-500 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer">
+            </div>
+        </div>
+    </footer>
 
-    <div id="admin-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 relative shadow-2xl">
-            <button onclick="toggleAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
-            <h3 class="text-lg font-bold mb-4 text-white">Dodaj novu radio stanicu</h3>
-            <form id="add-station-form" class="space-y-4">
-                <input type="text" id="custom-name" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white" placeholder="Naziv stanice">
-                <input type="url" id="custom-url" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white" placeholder="URL strima (link)">
-                <select id="custom-country" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white">
-                    <option value="RS">🇷🇸 Srbija</option>
-                    <option value="HR">🇭🇷 Hrvatska</option>
-                    <option value="BA">🇧🇦 BiH</option>
-                    <option value="SI">🇸🇮 Slovenija</option>
-                    <option value="ME">🇲🇪 Crna Gora</option>
-                    <option value="US">🇺🇸 SAD</option>
-                    <option value="GB">🇬🇧 Ujedinjeno Kraljevstvo</option>
-                    <option value="GR">🇬🇷 Grčka</option>
-                    <option value="DE">🇩🇪 Nemačka</option>
-                    <option value="IT">🇮🇹 Italija</option>
-                    <option value="FR">🇫🇷 Francuska</option>
-                    <option value="BE">🇧🇪 Belgija</option>
-                </select>
-                <input type="url" id="custom-favicon" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white" placeholder="URL Logotipa (Opciono)">
-                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 rounded-xl transition-colors">Sačuvaj u moju bazu</button>
-            </form>
-        </div>
-    </div>
+    <div id="admin-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 relative shadow-2xl">
+            <button onclick="toggleAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-lg font-bold mb-4 text-white">Dodaj novu radio stanicu</h3>
+            <form id="add-station-form" class="space-y-4">
+                <input type="text" id="custom-name" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white" placeholder="Naziv stanice">
+                <input type="url" id="custom-url" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white" placeholder="URL strima (link)">
+                <select id="custom-country" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white">
+                    <option value="RS">🇷🇸 Srbija</option>
+                    <option value="HR">🇭🇷 Hrvatska</option>
+                    <option value="BA">🇧🇦 BiH</option>
+                    <option value="SI">🇸🇮 Slovenija</option>
+                    <option value="ME">🇲🇪 Crna Gora</option>
+                    <option value="US">🇺🇸 SAD</option>
+                    <option value="GB">🇬🇧 Ujedinjeno Kraljevstvo</option>
+                    <option value="GR">🇬🇷 Grčka</option>
+                    <option value="DE">🇩🇪 Nemačka</option>
+                    <option value="IT">🇮🇹 Italija</option>
+                    <option value="FR">🇫🇷 Francuska</option>
+                    <option value="BE">🇧🇪 Belgija</option>
+                </select>
+                <input type="url" id="custom-favicon" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white" placeholder="URL Logotipa (Opciono)">
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 rounded-xl transition-colors">Sačuvaj u moju bazu</button>
+            </form>
+        </div>
+    </div>
 
-    <script>
-        const proxy = "https://cors-anywhere.herokuapp.com/"; 
-        const premiumLocalDatabase = [
-            // SAD
-            { name: "WHTZ Z100 New York", url: "https://stream.revma.com/revma/v1/streams/whtz-fm/icecast", countrycode: "US", tags: "Pop, Hits", favicon: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Z100_logo.svg" },
-            { name: "KIIS FM Los Angeles", url: "https://stream.revma.com/revma/v1/streams/kiis-fm/icecast", countrycode: "US", tags: "Dance, Pop", favicon: "https://upload.wikimedia.org/wikipedia/en/2/2b/KIIS-FM_Logo.png" },
-            // UK
-            { name: "BBC Radio 1", url: "https://stream.live.vc.bbc.co.uk/bbc_radio_one", countrycode: "GB", tags: "Pop, Top 40, UK", favicon: "https://upload.wikimedia.org/wikipedia/commons/1/14/BBC_Radio_1.svg" },
-            { name: "Capital FM London", url: "https://icecast.capitalmp3.co.uk/CapitalLondonMP3", countrycode: "GB", tags: "Hits, Pop", favicon: "https://upload.wikimedia.org/wikipedia/en/3/3b/Capital_FM_2016.png" },
-            // SRBIJA
-            { name: "Naxi Radio", url: "https://streaming.naxi.rs/naxi128.mp3", countrycode: "RS", tags: "Pop, Domaća", favicon: "https://www.naxi.rs/images/logo.png" },
-            { name: "TDI Radio", url: "https://streaming.tdiradio.com/tdi.mp3", countrycode: "RS", tags: "Dance, Club", favicon: "https://www.tdiradio.com/images/tdi-logo.png" },
-            { name: "Radio Karolina", url: "https://streaming.karolina.rs/karolina128.mp3", countrycode: "RS", tags: "Oldies, Relax", favicon: "https://www.karolina.rs/images/logo.png" },
-            // HRVATSKA
-            { name: "Otvoreni Radio", url: "https://shoutcast.pondi.hr/otvoreni/stream/1/", countrycode: "HR", tags: "Pop, Hits", favicon: "https://www.otvoreni.hr/favicon.ico" },
-            { name: "Narodni (Bravo!)", url: "https://shoutcast.pondi.hr/narodni/stream/1/", countrycode: "HR", tags: "Zabavna, Pop", favicon: "https://bravo.hr/favicon.ico" },
-            // BIH
-            { name: "Radio Stari Grad", url: "https://stream.rsg.ba/stream", countrycode: "BA", tags: "Pop, Hits", favicon: "https://rsg.ba/favicon.ico" },
-            { name: "Antena Sarajevo", url: "https://stream.antena.ba/stream", countrycode: "BA", tags: "Pop, Mainstream", favicon: "https://antena.ba/favicon.ico" },
-            // SLOVENIJA
-            { name: "Radio Center", url: "https://stream.radiocenter.si/center", countrycode: "SI", tags: "Pop, Hits", favicon: "https://www.radiocenter.si/favicon.ico" },
-            // CRNA GORA
-            { name: "Radio D Podgorica", url: "https://stream.radiod.me:8443/radiod", countrycode: "ME", tags: "Pop, Dance", favicon: "https://radiod.me/favicon.ico" },
-            // GRČKA
-            { name: "Dromos FM Atina 89.8", url: "https://stream.radiojar.com/dromos898", countrycode: "GR", tags: "Greek Pop, Hits", favicon: "https://www.dromosfm.gr/favicon.ico" },
-            { name: "Love Radio 97.4", url: "https://stream.radiojar.com/loveradio", countrycode: "GR", tags: "Soft Pop, Greek", favicon: "https://www.loveradio.gr/favicon.ico" },
-            // NEMAČKA, ITALIJA, BELGIJA, AUSTRIJA, ŠPANIJA, HOLANDIJA
-            { name: "Rock Antenne Germany", url: "https://stream.rockantenne.de/rockantenne/stream/mp3", countrycode: "DE", tags: "Rock, Classic", favicon: "https://rockantenne.de/favicon.ico" },
-            { name: "RTL 102.5 Italy", url: "https://shoutcast.rtl.it:3010/stream/1/", countrycode: "IT", tags: "Pop, Hits", favicon: "https://rtl.it/favicon.ico" },
-            { name: "RTBF Classic 21 (Belgium)", url: "https://radios.rtbf.be/classic21-128.mp3", countrycode: "BE", tags: "Classic Rock", favicon: "https://www.rtbf.be/favicon.ico" },
-            { name: "Hitradio Ö3 Austria", url: "https://oe3edge.orf.at/oe3_live", countrycode: "AT", tags: "Pop, Top 40", favicon: "https://oe3.orf.at/favicon.ico" },
-            { name: "Los 40 Spain", url: "https://25653.live.streamtheworld.com/LOS40.mp3", countrycode: "ES", tags: "Pop, Hits", favicon: "https://los40.com/favicon.ico" },
-            { name: "Radio 538 Netherlands", url: "https://stream.radio538.nl/538", countrycode: "NL", tags: "Dance, Top 40", favicon: "https://www.538.nl/favicon.ico" }
-        ];
+    <script>
+        const proxy = "https://cors-anywhere.herokuapp.com/"; 
+        const premiumLocalDatabase = [
+            { name: "Naxi Radio", url: "https://streaming.naxi.rs/naxi128.mp3", countrycode: "RS", tags: "Pop, Domaća", favicon: "https://www.naxi.rs/images/logo.png" },
+            { name: "TDI Radio", url: "https://streaming.tdiradio.com/tdi.mp3", countrycode: "RS", tags: "Dance, Club", favicon: "https://www.tdiradio.com/images/tdi-logo.png" },
+            { name: "Radio Karolina", url: "https://streaming.karolina.rs/karolina128.mp3", countrycode: "RS", tags: "Oldies, Relax", favicon: "https://www.karolina.rs/images/logo.png" },
+            { name: "Otvoreni Radio", url: "https://shoutcast.pondi.hr/otvoreni/stream/1/", countrycode: "HR", tags: "Pop, Hits", favicon: "https://www.otvoreni.hr/favicon.ico" },
+            { name: "Radio Stari Grad", url: "https://stream.rsg.ba/stream", countrycode: "BA", tags: "Pop, Hits", favicon: "https://rsg.ba/favicon.ico" },
+            { name: "Radio Center", url: "https://stream.radiocenter.si/center", countrycode: "SI", tags: "Pop, Hits", favicon: "https://www.radiocenter.si/favicon.ico" },
+            { name: "Radio D Podgorica", url: "https://stream.radiod.me:8443/radiod", countrycode: "ME", tags: "Pop, Dance", favicon: "https://radiod.me/favicon.ico" }
+        ];
 
-        let apiStations = [];
-        let combinedStations = [];
-        let activeFilter = 'all';
-        let metadataInterval = null;
-        const audio = new Audio();
+        let apiStations = [];
+        let combinedStations = [];
+        let activeFilter = 'all';
+        const audio = new Audio();
 
-        audio.addEventListener('error', function() {
-            if(!audio.src.startsWith(proxy) && audio.src.startsWith('http://')) {
-                audio.src = proxy + audio.src;
-                audio.play().catch(() => {});
-            }
-        });
+        audio.addEventListener('error', function() {
+            if(!audio.src.startsWith(proxy) && audio.src.startsWith('http://')) {
+                audio.src = proxy + audio.src;
+                audio.play().catch(() => {});
+            }
+        });
 
-        async function initRadio() {
-            try {
-                const response = await fetch('https://de1.api.radio-browser.info/json/stations/topclick/400');
-                if (response.ok) {
-                    const data = await response.json();
-                    apiStations = data.filter(s => s.url_resolved.startsWith('https')).map(s => ({
-                        name: s.name, url: s.url_resolved, countrycode: s.countrycode?.toUpperCase(), tags: s.tags, favicon: s.favicon
-                    }));
-                }
-            } catch (e) { console.log("API nedostupan, koristim lokalno."); }
-            refreshData();
-        }
+        async function initRadio() {
+            try {
+                const response = await fetch('https://de1.api.radio-browser.info/json/stations/topclick/100');
+                if (response.ok) {
+                    const data = await response.json();
+                    apiStations = data.filter(s => s.url_resolved && s.url_resolved.startsWith('https')).map(s => ({
+                        name: s.name, url: s.url_resolved, countrycode: s.countrycode?.toUpperCase(), tags: s.tags, favicon: s.favicon
+                    }));
+                }
+            } catch (e) { console.log("API nedostupan, koristim lokalno."); }
+            refreshData();
+        }
 
-        function refreshData() {
-            const custom = JSON.parse(localStorage.getItem('customRadioStations')) || [];
-            combinedStations = [...custom, ...premiumLocalDatabase, ...apiStations];
-            const unique = new Map();
-            combinedStations.forEach(s => { if(s.name && s.url) unique.set(s.name.toLowerCase(), s); });
-            combinedStations = Array.from(unique.values());
-            document.getElementById('stats').innerText = `Stanica u sistemu: ${combinedStations.length}`;
-            applyFilter();
-        }
+        function refreshData() {
+            const custom = JSON.parse(localStorage.getItem('customRadioStations')) || [];
+            combinedStations = [...custom, ...premiumLocalDatabase, ...apiStations];
+            const unique = new Map();
+            combinedStations.forEach(s => { if(s.name && s.url) unique.set(s.name.toLowerCase(), s); });
+            combinedStations = Array.from(unique.values());
+            document.getElementById('stats').innerText = `Stanica u sistemu: ${combinedStations.length}`;
+            applyFilter();
+        }
 
-        function filterBy(type) {
-            activeFilter = type;
-            document.querySelectorAll('.sidebar-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            applyFilter();
-        }
+        function filterBy(type) {
+            activeFilter = type;
+            document.querySelectorAll('.sidebar-btn').forEach(btn => btn.classList.remove('active'));
+            if(event) {
+                event.currentTarget.classList.add('active');
+            }
+            applyFilter();
+        }
 
-        function applyFilter() {
-            const query = document.getElementById('search-input').value.toLowerCase().trim();
-            let filtered = combinedStations;
-            
-            if (activeFilter !== 'all' && activeFilter !== 'custom') {
-                filtered = combinedStations.filter(s => s.countrycode === activeFilter);
-            } else if (activeFilter === 'custom') {
-                const customNames = (JSON.parse(localStorage.getItem('customRadioStations')) || []).map(c => c.name.toLowerCase());
-                filtered = combinedStations.filter(s => customNames.includes(s.name.toLowerCase()));
-            }
-            
-            if (query) {
-                filtered = filtered.filter(s => s.name.toLowerCase().includes(query) || (s.tags && s.tags.toLowerCase().includes(query)));
-            }
-            render(filtered);
-        }
+        function applyFilter() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            let filtered = combinedStations;
+            
+            if (activeFilter !== 'all' && activeFilter !== 'custom') {
+                filtered = combinedStations.filter(s => s.countrycode === activeFilter);
+            } else if (activeFilter === 'custom') {
+                const customNames = (JSON.parse(localStorage.getItem('customRadioStations')) || []).map(c => c.name.toLowerCase());
+                filtered = combinedStations.filter(s => customNames.includes(s.name.toLowerCase()));
+            }
+            
+            if (query) {
+                filtered = filtered.filter(s => s.name.toLowerCase().includes(query) || (s.tags && s.tags.toLowerCase().includes(query)));
+            }
+            render(filtered);
+        }
 
-        function render(stations) {
-            const grid = document.getElementById('stations-grid');
-            grid.innerHTML = '';
-            if(stations.length === 0) { document.getElementById('no-results').classList.remove('hidden'); return; }
-            document.getElementById('no-results').classList.add('hidden');
+        function render(stations) {
+            const grid = document.getElementById('stations-grid');
+            grid.innerHTML = '';
+            if(stations.length === 0) { document.getElementById('no-results').classList.remove('hidden'); return; }
+            document.getElementById('no-results').classList.add('hidden');
 
-            stations.forEach(s => {
-                const card = document.createElement('div');
-                card.className = "bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-center gap-4 cursor-pointer hover:bg-slate-800/80 hover:border-purple-500/40 transition-all group";
-                const img = s.favicon ? `<img src="${s.favicon}" onerror="this.outerHTML='<i class=\'fa-solid fa-radio text-slate-500\'></i>'" class="w-full h-full object-cover">` : `<i class="fa-solid fa-radio text-slate-600"></i>`;
-                card.innerHTML = `
-                    <div class="w-12 h-12 bg-slate-950 rounded-xl flex items-center justify-center overflow-hidden shrink-0 relative border border-slate-800">${img}
-                        <div class="absolute inset-0 bg-purple-600/80 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity"><i class="fa-solid fa-play text-white text-xs"></i></div>
-                    </div>
-                    <div class="min-w-0 flex-1">
-                        <div class="flex items-center gap-1.5"><span class="text-[10px] font-bold text-pink-400 bg-pink-950/30 px-1 py-0.5 rounded">${s.countrycode || 'WW'}</span><h3 class="text-xs font-bold truncate text-slate-200 flex-1">${s.name}</h3></div>
-                        <p class="text-[11px] text-slate-400 truncate mt-0.5">${s.tags || 'Muzika uživo'}</p>
-                    </div>`;
-                card.onclick = () => play(s);
-                grid.appendChild(card);
-            });
-        }
+            stations.forEach(s => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-center gap-4 cursor-pointer hover:bg-slate-800/80 hover:border-purple-500/40 transition-all group h-20 max-h-20 overflow-hidden";
+                
+                // Popravljen sistem ikonica da se izbegne prazan kvadrat
+                const fallbackIcon = `<i class="fa-solid fa-radio text-slate-500 text-lg"></i>`;
+                let imgHtml = fallbackIcon;
+                
+                if (s.favicon && s.favicon.trim() !== "") {
+                    imgHtml = `<img src="${s.favicon}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" class="w-full h-full object-cover rounded-lg">
+                               <div style="display:none;" class="flex items-center justify-center w-full h-full">${fallbackIcon}</div>`;
+                }
 
-        // FUNKCIJA KOJA ČITA METAPODATKE (ARTIST I PESMA) UŽIVO SA STRIMA
-        function parseIcyMetadata(streamUrl) {
-            clearInterval(metadataInterval);
-            const metaField = document.getElementById('player-metadata');
-            metaField.innerHTML = `<i class="fa-solid fa-music text-[10px] text-purple-500"></i> Muzika uživo`;
+                card.innerHTML = `
+                    <div class="w-12 h-12 bg-slate-950 rounded-xl flex items-center justify-center overflow-hidden shrink-0 relative border border-slate-800">
+                        ${imgHtml}
+                        <div class="absolute inset-0 bg-purple-600/80 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                            <i class="fa-solid fa-play text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-[9px] font-bold text-pink-400 bg-pink-950/30 px-1 py-0.5 rounded shrink-0">${s.countrycode || 'WW'}</span>
+                            <h3 class="text-xs font-bold truncate text-slate-200 flex-1">${s.name}</h3>
+                        </div>
+                        <p class="text-[11px] text-slate-400 truncate mt-0.5">${s.tags || 'Muzika uživo'}</p>
+                    </div>`;
+                card.onclick = () => play(s);
+                grid.appendChild(card);
+            });
+        }
 
-            // Pokušavamo da izvučemo nazive iz javnih Icecast API repozitorijuma ako su dostupni
-            metadataInterval = setInterval(async () => {
-                if (audio.paused) return;
-                try {
-                    // Preko javnog servisa čitamo trenutne informacije o numeri
-                    const urlObj = new URL(streamUrl);
-                    if (urlObj.hostname.includes('revma') || urlObj.hostname.includes('radiojar') || urlObj.hostname.includes('naxi')) {
-                        // Dinamička simulacija ili provera za poznate stanice na osnovu baze
-                        // Za zvanični rad, pošto pretraživač brani direktan ICY stream čitač bez teškog serverskog proxy-ja,
-                        // izvlačimo žive tagove iz same pesme ako ih audio objekat prepozna
-                    }
-                } catch(e){}
-            }, 10000);
-            
-            // Kada strim krene, ako plejer pročita promenu metapodatka
-            audio.onplaying = () => {
-                // Može se implementirati i tekstualna animacija
-                metaField.innerHTML = `<i class="fa-solid fa-compact-disc text-purple-500 animate-spin mr-1"></i> Uživo emitovanje signala...`;
-            };
-        }
+        function play(s) {
+            const btn = document.getElementById('play-pause-btn');
+            const icon = document.getElementById('play-icon');
+            const buffer = document.getElementById('buffer-indicator');
+            btn.disabled = false; buffer.classList.remove('hidden');
+            icon.className = "fa-solid fa-spinner animate-spin text-base";
+            
+            document.getElementById('player-title').innerText = s.name;
+            const pLogo = document.getElementById('player-logo');
+            const pIcon = document.getElementById('player-placeholder-icon');
+            
+            if(s.favicon) { 
+                pIcon.classList.add('hidden'); 
+                pLogo.src = s.favicon; 
+                pLogo.classList.remove('hidden'); 
+                pLogo.onerror = () => { pLogo.classList.add('hidden'); pIcon.classList.remove('hidden'); } 
+            } else { 
+                pLogo.classList.add('hidden'); pIcon.classList.remove('hidden'); 
+            }
 
-        function play(s) {
-            const btn = document.getElementById('play-pause-btn');
-            const icon = document.getElementById('play-icon');
-            const buffer = document.getElementById('buffer-indicator');
-            btn.disabled = false; buffer.classList.remove('hidden');
-            icon.className = "fa-solid fa-spinner animate-spin text-base";
-            
-            document.getElementById('player-title').innerText = s.name;
-            const pLogo = document.getElementById('player-logo');
-            const pIcon = document.getElementById('player-placeholder-icon');
-            
-            if(s.favicon) { pIcon.classList.add('hidden'); pLogo.src = s.favicon; pLogo.classList.remove('hidden'); pLogo.onerror = () => { pLogo.classList.add('hidden'); pIcon.classList.remove('hidden'); } }
-            else { pLogo.classList.add('hidden'); pIcon.classList.remove('hidden'); }
+            audio.src = s.url;
+            audio.play().then(() => { 
+                icon.className = "fa-solid fa-pause text-base"; 
+                buffer.classList.add('hidden'); 
+            }).catch(() => { 
+                buffer.classList.add('hidden'); 
+                icon.className = "fa-solid fa-play text-base ml-0.5"; 
+            });
+        }
 
-            audio.src = s.url;
-            audio.play().then(() => { icon.className = "fa-solid fa-pause text-base"; buffer.classList.add('hidden'); parseIcyMetadata(s.url); })
-                       .catch(() => { buffer.classList.add('hidden'); icon.className = "fa-solid fa-play text-base ml-0.5"; });
-        }
+        document.getElementById('play-pause-btn').onclick = () => {
+            const icon = document.getElementById('play-icon');
+            if (audio.paused) { audio.play(); icon.className = "fa-solid fa-pause text-base"; }
+            else { audio.pause(); icon.className = "fa-solid fa-play text-base ml-0.5"; }
+        };
 
-        document.getElementById('play-pause-btn').onclick = () => {
-            const icon = document.getElementById('play-icon');
-            if (audio.paused) { audio.play(); icon.className = "fa-solid fa-pause text-base"; }
-            else { audio.pause(); icon.className = "fa-solid fa-play text-base ml-0.5"; }
-        };
+        document.getElementById('volume-slider').oninput = (e) => audio.volume = e.target.value;
+        document.getElementById('search-input').oninput = applyFilter;
+        function toggleAdminModal() { document.getElementById('admin-modal').classList.toggle('hidden'); }
 
-        document.getElementById('volume-slider').oninput = (e) => audio.volume = e.target.value;
-        document.getElementById('search-input').oninput = applyFilter;
-        function toggleAdminModal() { document.getElementById('admin-modal').classList.toggle('hidden'); }
+        document.getElementById('add-station-form').onsubmit = (e) => {
+            e.preventDefault();
+            const ns = { 
+                name: document.getElementById('custom-name').value, url: document.getElementById('custom-url').value, 
+                countrycode: document.getElementById('custom-country').value?.toUpperCase(), favicon: document.getElementById('custom-favicon').value 
+            };
+            const cur = JSON.parse(localStorage.getItem('customRadioStations')) || [];
+            cur.unshift(ns); localStorage.setItem('customRadioStations', JSON.stringify(cur));
+            toggleAdminModal(); refreshData(); document.getElementById('add-station-form').reset();
+        };
 
-        document.getElementById('add-station-form').onsubmit = (e) => {
-            e.preventDefault();
-            const ns = { 
-                name: document.getElementById('custom-name').value, url: document.getElementById('custom-url').value, 
-                countrycode: document.getElementById('custom-country').value?.toUpperCase(), favicon: document.getElementById('custom-favicon').value 
-            };
-            const cur = JSON.parse(localStorage.getItem('customRadioStations')) || [];
-            cur.unshift(ns); localStorage.setItem('customRadioStations', JSON.stringify(cur));
-            toggleAdminModal(); refreshData(); document.getElementById('add-station-form').reset();
-        };
-
-        initRadio();
-    </script>
+        initRadio();
+    </script>
 </body>
 </html>
