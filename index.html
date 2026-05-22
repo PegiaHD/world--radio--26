@@ -15,6 +15,13 @@
             border-left-color: #a855f7;
             color: #f472b6;
         }
+        /* Osiguranje da slike nikada ne iskrive karticu */
+        .station-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col md:flex-row font-sans antialiased overflow-x-hidden">
@@ -89,7 +96,7 @@
         </div>
 
         <main class="p-4 md:p-6 flex-1">
-            <div id="stations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4auto-rows-max"></div>
+            <div id="stations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
             <div id="no-results" class="hidden text-center py-20">
                 <i class="fa-solid fa-radio text-5xl text-slate-800 mb-4 block"></i>
                 <h3 class="text-lg font-medium text-slate-500">Nema stanica za izabranu zemlju</h3>
@@ -154,13 +161,13 @@
     <script>
         const proxy = "https://cors-anywhere.herokuapp.com/"; 
         const premiumLocalDatabase = [
-            { name: "Naxi Radio", url: "https://streaming.naxi.rs/naxi128.mp3", countrycode: "RS", tags: "Pop, Domaća", favicon: "https://www.naxi.rs/images/logo.png" },
-            { name: "TDI Radio", url: "https://streaming.tdiradio.com/tdi.mp3", countrycode: "RS", tags: "Dance, Club", favicon: "https://www.tdiradio.com/images/tdi-logo.png" },
-            { name: "Radio Karolina", url: "https://streaming.karolina.rs/karolina128.mp3", countrycode: "RS", tags: "Oldies, Relax", favicon: "https://www.karolina.rs/images/logo.png" },
-            { name: "Otvoreni Radio", url: "https://shoutcast.pondi.hr/otvoreni/stream/1/", countrycode: "HR", tags: "Pop, Hits", favicon: "https://www.otvoreni.hr/favicon.ico" },
-            { name: "Radio Stari Grad", url: "https://stream.rsg.ba/stream", countrycode: "BA", tags: "Pop, Hits", favicon: "https://rsg.ba/favicon.ico" },
-            { name: "Radio Center", url: "https://stream.radiocenter.si/center", countrycode: "SI", tags: "Pop, Hits", favicon: "https://www.radiocenter.si/favicon.ico" },
-            { name: "Radio D Podgorica", url: "https://stream.radiod.me:8443/radiod", countrycode: "ME", tags: "Pop, Dance", favicon: "https://radiod.me/favicon.ico" }
+            { name: "Naxi Radio", url: "https://streaming.naxi.rs/naxi128.mp3", countrycode: "RS", tags: "Pop, Domaća", favicon: "" },
+            { name: "TDI Radio", url: "https://streaming.tdiradio.com/tdi.mp3", countrycode: "RS", tags: "Dance, Club", favicon: "" },
+            { name: "Radio Karolina", url: "https://streaming.karolina.rs/karolina128.mp3", countrycode: "RS", tags: "Oldies, Relax", favicon: "" },
+            { name: "Otvoreni Radio", url: "https://shoutcast.pondi.hr/otvoreni/stream/1/", countrycode: "HR", tags: "Pop, Hits", favicon: "" },
+            { name: "Radio Stari Grad", url: "https://stream.rsg.ba/stream", countrycode: "BA", tags: "Pop, Hits", favicon: "" },
+            { name: "Radio Center", url: "https://stream.radiocenter.si/center", countrycode: "SI", tags: "Pop, Hits", favicon: "" },
+            { name: "Radio D Podgorica", url: "https://stream.radiod.me:8443/radiod", countrycode: "ME", tags: "Pop, Dance", favicon: "" }
         ];
 
         let apiStations = [];
@@ -201,8 +208,8 @@
         function filterBy(type) {
             activeFilter = type;
             document.querySelectorAll('.sidebar-btn').forEach(btn => btn.classList.remove('active'));
-            if(event) {
-                event.currentTarget.classList.add('active');
+            if(window.event) {
+                window.event.currentTarget.classList.add('active');
             }
             applyFilter();
         }
@@ -224,6 +231,14 @@
             render(filtered);
         }
 
+        // Nova, bezbedna funkcija koja briše sliku ako baci grešku i stavlja ikonicu
+        function handleImgError(imgElement) {
+            const container = imgElement.parentElement;
+            imgElement.remove(); // Potpuno sklanjamo sliku iz koda
+            const iconHtml = `<div class="flex items-center justify-center w-full h-full text-purple-500"><i class="fa-solid fa-radio text-lg"></i></div>`;
+            container.insertAdjacentHTML('beforeend', iconHtml);
+        }
+
         function render(stations) {
             const grid = document.getElementById('stations-grid');
             grid.innerHTML = '';
@@ -232,15 +247,13 @@
 
             stations.forEach(s => {
                 const card = document.createElement('div');
-                card.className = "bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-center gap-4 cursor-pointer hover:bg-slate-800/80 hover:border-purple-500/40 transition-all group h-20 max-h-20 overflow-hidden";
+                // fiksirana visina (h-20) i skrivanje prelivanja (overflow-hidden)
+                card.className = "bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-center gap-4 cursor-pointer hover:bg-slate-800/80 hover:border-purple-500/40 transition-all group h-20 overflow-hidden shrink-0";
                 
-                // Popravljen sistem ikonica da se izbegne prazan kvadrat
-                const fallbackIcon = `<i class="fa-solid fa-radio text-slate-500 text-lg"></i>`;
-                let imgHtml = fallbackIcon;
+                let imgHtml = `<div class="flex items-center justify-center w-full h-full text-purple-500"><i class="fa-solid fa-radio text-lg"></i></div>`;
                 
                 if (s.favicon && s.favicon.trim() !== "") {
-                    imgHtml = `<img src="${s.favicon}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" class="w-full h-full object-cover rounded-lg">
-                               <div style="display:none;" class="flex items-center justify-center w-full h-full">${fallbackIcon}</div>`;
+                    imgHtml = `<img src="${s.favicon}" onerror="handleImgError(this)" class="station-img rounded-lg">`;
                 }
 
                 card.innerHTML = `
@@ -273,7 +286,7 @@
             const pLogo = document.getElementById('player-logo');
             const pIcon = document.getElementById('player-placeholder-icon');
             
-            if(s.favicon) { 
+            if(s.favicon && s.favicon.trim() !== "") { 
                 pIcon.classList.add('hidden'); 
                 pLogo.src = s.favicon; 
                 pLogo.classList.remove('hidden'); 
@@ -301,19 +314,3 @@
         document.getElementById('volume-slider').oninput = (e) => audio.volume = e.target.value;
         document.getElementById('search-input').oninput = applyFilter;
         function toggleAdminModal() { document.getElementById('admin-modal').classList.toggle('hidden'); }
-
-        document.getElementById('add-station-form').onsubmit = (e) => {
-            e.preventDefault();
-            const ns = { 
-                name: document.getElementById('custom-name').value, url: document.getElementById('custom-url').value, 
-                countrycode: document.getElementById('custom-country').value?.toUpperCase(), favicon: document.getElementById('custom-favicon').value 
-            };
-            const cur = JSON.parse(localStorage.getItem('customRadioStations')) || [];
-            cur.unshift(ns); localStorage.setItem('customRadioStations', JSON.stringify(cur));
-            toggleAdminModal(); refreshData(); document.getElementById('add-station-form').reset();
-        };
-
-        initRadio();
-    </script>
-</body>
-</html>
